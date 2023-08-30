@@ -1,113 +1,115 @@
-import Image from 'next/image'
+import Image from "next/image";
+import NavItem from "./components/NavItem";
+import Navbar from "./components/Navbar";
+import pfp from "@/images/NickSq.jpg"
+import LinkButton from "./components/LinkButton";
+import Badge from "./components/Badge";
+import Projects from "./components/Projects";
+import Link from "next/link";
+import ProjectItem from "./components/ProjectItem";
 
-export default function Home() {
+/* Opening PDFs in new tab: https://github.com/vercel/next.js/discussions/25981#discussioncomment-1039648 */
+export default function Landing() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    
+    <main className="min-h-full">
+      <div className="bg-slate-100 relative">
+        <Navbar>
+          <NavItem href="#home" isActive={true}>Home</NavItem>
+          <NavItem href="#projects">Projects</NavItem>
+          <NavItem href="#skills">Skills</NavItem>
+        </Navbar>
+        <div className="fixed flex left-0 top-0 mx-6">
+        <LinkButton override="" href="#home" target="">
+          <div className="fixed flex">
+            <Image src="/icons/N.png" alt="nswagg.com" height={32} width={32}/>
+            <p className="hidden md:block px-4 pt-1 font-semibold font-serif">Nick Waggoner</p>
+          </div>
+        </LinkButton>
+        </div>
+        <div className="fixed flex right-0 top-0 m-6 space-x-4 lg:space-x-6">
+          <LinkButton override="" href="https://github.com/nswagg" target="_blank">
+              <Image className="hover:invert hover:brightness-200" title="GitHub" src="/icons/github-mark.png" alt="Nick Waggoner's GitHub Profile" width="28" height="28"/>  
+          </LinkButton>
+          <LinkButton override="" href="https://www.linkedin.com/in/nswagg/" target="_blank">
+              <Image className="hover:invert hover:saturate-0" title="LinkedIn" src="/icons/linkedIn.png" alt="Nick Waggoner's LinkedIn® Profile" width="28" height="28"/>
+          </LinkButton>
+        </div>
+        <div id="home" className="md:container mx-auto flex h-screen ">
+          <div className="justify-center m-auto bg-slate-700 bg-opacity-20 py-12 md:px-20 md:rounded-xl shadow-lg">
+            <div className="flex flex-wrap justify-center lg:flex-nowrap lg:justify-normal">
+              <div className=" mx-auto content-center p-10 px-8 lg:mt-8 lg:pt-36 lg:pb-24  ">
+                <h1 className="text-5xl font-bold">Nick Waggoner</h1>
+                <p className="m-4 font-semibold">Software Engineering<br/>Data Visualisation<br/>Web Design</p>
+                <div className="lg:space-x-3 lg:py-3 flex flex-wrap pointer-events-auto">
+                  <LinkButton href="/docs/WaggonerResume8_22_23.pdf">View Resume</LinkButton>
+                  <LinkButton href="/docs/WaggonerCVFull8_22_23.pdf">View Curriculum Vita</LinkButton>
+                </div>
+              </div>
+              <div className="items-center justify-center lg:justify-normal text-center order-first">
+                <Image src={pfp} alt={"Nick Waggoner Portrait"} className="select-none mx-auto my-4 w-40 lg:w-80 aspect-square rounded-full  shadow-lg "/>
+                <p className="font-semibold">University of Colorado Colorado Springs</p> {/** TODO: Modal for BI Explanation? Maybe alert */}
+                <p className="italic">Bachelor of Innovation in Computer Science<br/>Collateral: Creative Communication</p>
+              </div>
+              </div>
+            <div className="px-14 m-4 italic md:text-2xl font-semibold justify-center">
+              <h2 className=" font-bold text-3xl">Innovation</h2>
+              <p className="flex xl:indent-6 justify-center">in·​no·​va·​tion (noun): The process of transforming ideas into impact</p>
+            </div>
+          </div>
+        </div>
+        <div id="projects" className="bg-slate-700 bg-opacity-20 py-20">
+          <Projects>
+            <ProjectItem title="Particle Swarm Optimization with Dynamic Targets" href="https://github.com/nswagg/psoMT" image="/images/ants.png"description="Particle Swarm Optimization algorithm experiment with moving/degrading target Was initially designed to implement Ant Colony Optimization, but has been refactored for particle swarm with targets decaying on convergence (inversely proportional to swarm velocity). Decay rate defined as carry_capacity of particles defines the number of particles required to be in proximity to target for it to decay self.particles_for_decay = self.NumParticles * (1 - self.w) if 0 < w <= 1 else self.NumParticles"/>
+            <ProjectItem title="CFA GIS Delivery Zone Optimization" description="Mapbox GIS visualization using historic delivery data to inform delivery zone optimization through speed of service"/>
+            <ProjectItem title="NASA Landslide Data Visualization" href="/nasa" image="/images/map.png" description="Includes public NASA landslide data from 1988-2017 Visualizes landslide dataset on a GIS tileset using the Mapbox tool."/>
+            <ProjectItem title="Outrunning Digital Realism" href="https://sway.office.com/n9kebLBZB7MCPqgF?ref=Link" description="As reality virtualization becomes more prevalent, virtual reality threatens both physical interaction and the instigation of severe social dilemmas revolving around escapism."/>
+            <ProjectItem title="REAL-WORLD CYBORGS | Human Augmentation Video Essay - Deus Ex: Human Revolution" description="Discussion of current technology, technological development tracjectory, and social and ethical topics relating to replacing, supplementing, and superseding human abilities through use of tools and augmentation."/>
+            <ProjectItem title="Healthcare Robotics Lecture: Autonomous Agents and Human Augmentation" href="https://www.youtube.com/watch?v=-ppYXPCEHqY" description="Short Lecture on current healthcare robotics systems, artificial intelligence, and ethics of robotics in relation to the benefit brought about by these technologies."/>
+          </Projects> 
+        </div>
+        <div id="skills">
+          <div className=" bg-slate-700 bg-opacity-30">
+            <div className="flex container mx-auto">
+              <div id="programming_languages" className="m-auto grid grid-flow-dense auto-rows-max">
+                <h2 className="text-center font-semibold text-xl mt-4">Programming Languages</h2>
+                <div className="flex flex-wrap auto-cols-justify-around select-none">
+                  <Badge icon="/icons/python-icon.svg" alt="Python">Python</Badge>
+                  <Badge icon="/icons/java-icon.svg" alt="Java">Java</Badge>
+                  <Badge icon="/icons/javascript-icon.svg" alt="JavaScript">JavaScript</Badge>
+                  <Badge icon="/icons/golang-icon.svg" alt="Golang">Golang</Badge>
+                  <Badge icon="/icons/c++-icon2.svg" alt="C++" iconClass="mt-1.5">C++</Badge>
+                  <Badge icon="/icons/c-icon.svg" alt="Objective C">Objective C</Badge>
+                  <Badge icon="/icons/html5-icon.svg" alt="HTML">HTML</Badge>
+                  <Badge icon="/icons/css-icon.svg" alt="CSS">CSS</Badge>
+                  <Badge icon="/icons/ruby-icon.svg" alt="Ruby on Rails">Ruby on Rails</Badge>
+                  <Badge icon="/icons/linux-icon.svg" alt="Linux" size={40}>Linux</Badge>
+                </div>
+              </div>
+              <div id="tools" className="container m-auto">
+                <h2 className="justify-center font-semibold">Programming Languages</h2>
+                <div>
+                  
+                </div>
+              </div>
+              <div>
+              <div id="other" className="container">
+                <h2>Programming Languages</h2>
+                <div>
+                  
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+          {/** Contact info, take me to top button, copyright, etc.*/}
+
         </div>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      <footer className="pointer-events-auto pt-10 pb-32 text-center border-none outline-none bg-slate-900 text-slate-500">
+        Copyright © Nick Waggoner 2023. All rights reserved.<br/>
+        <a href="https://tailwindcss.com/" rel="noopener" target="_blank "className="underline">View this project template on GitHub</a>
+      </footer>
     </main>
   )
 }
