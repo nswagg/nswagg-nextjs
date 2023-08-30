@@ -13,7 +13,7 @@ export default function Landing() {
   return (
     
     <main className="min-h-full">
-      <div className="bg-slate-100 relative">
+      <div className="bg-slate-100 relative overflow-hidden">
         <Navbar>
           <NavItem href="#home" isActive={true}>Home</NavItem>
           <NavItem href="#projects">Projects</NavItem>
@@ -58,22 +58,22 @@ export default function Landing() {
             </div>
           </div>
         </div>
-        <div id="projects" className="bg-slate-700 bg-opacity-20 py-20">
+        <div id="projects" className=" pt-32 pb-20 bg-gradient-to-b from-slate-100 to-slate-400">
           <Projects>
-            <ProjectItem title="Particle Swarm Optimization with Dynamic Targets" href="https://github.com/nswagg/psoMT" image="/images/ants.png"description="Particle Swarm Optimization algorithm experiment with moving/degrading target Was initially designed to implement Ant Colony Optimization, but has been refactored for particle swarm with targets decaying on convergence (inversely proportional to swarm velocity). Decay rate defined as carry_capacity of particles defines the number of particles required to be in proximity to target for it to decay self.particles_for_decay = self.NumParticles * (1 - self.w) if 0 < w <= 1 else self.NumParticles"/>
+            <ProjectItem title="Particle Swarm Optimization with Dynamic Targets" href="https://github.com/nswagg/psoMT" image="/images/ants3x2.png" description="Particle Swarm Optimization algorithm experiment with moving/degrading target Was initially designed to implement Ant Colony Optimization, but has been refactored for particle swarm with targets decaying on convergence (inversely proportional to swarm velocity). Decay rate defined as carry_capacity of particles defines the number of particles required to be in proximity to target for it to decay self.particles_for_decay = self.NumParticles * (1 - self.w) if 0 < w <= 1 else self.NumParticles"/>
             <ProjectItem title="CFA GIS Delivery Zone Optimization" description="Mapbox GIS visualization using historic delivery data to inform delivery zone optimization through speed of service"/>
-            <ProjectItem title="NASA Landslide Data Visualization" href="/nasa" image="/images/map.png" description="Includes public NASA landslide data from 1988-2017 Visualizes landslide dataset on a GIS tileset using the Mapbox tool."/>
-            <ProjectItem title="Outrunning Digital Realism" href="https://sway.office.com/n9kebLBZB7MCPqgF?ref=Link" description="As reality virtualization becomes more prevalent, virtual reality threatens both physical interaction and the instigation of severe social dilemmas revolving around escapism."/>
-            <ProjectItem title="REAL-WORLD CYBORGS | Human Augmentation Video Essay - Deus Ex: Human Revolution" description="Discussion of current technology, technological development tracjectory, and social and ethical topics relating to replacing, supplementing, and superseding human abilities through use of tools and augmentation."/>
-            <ProjectItem title="Healthcare Robotics Lecture: Autonomous Agents and Human Augmentation" href="https://www.youtube.com/watch?v=-ppYXPCEHqY" description="Short Lecture on current healthcare robotics systems, artificial intelligence, and ethics of robotics in relation to the benefit brought about by these technologies."/>
+            <ProjectItem title="NASA Landslide Data Visualization" href="/nasa" image="/images/map3x2.png" description="Includes public NASA landslide data from 1988-2017 Visualizes landslide dataset on a GIS tileset using the Mapbox tool."/>
+            <ProjectItem title="Article: Outrunning Digital Realism" href="https://sway.office.com/n9kebLBZB7MCPqgF?ref=Link" image="/images/xr3x2.jpg" attr="Photo by XR Expo on Unsplash" description="As reality virtualization becomes more prevalent, virtual reality threatens both physical interaction and the instigation of severe social dilemmas revolving around escapism."/>
+            <ProjectItem title="REAL-WORLD CYBORGS | Human Augmentation Video Essay - Deus Ex: Human Revolution" image="/images/cyborg3x2.jpg" description="Discussion of current technology, technological development tracjectory, and social and ethical topics relating to replacing, supplementing, and superseding human abilities through use of tools and augmentation."/>
+            <ProjectItem title="Healthcare Robotics Lecture: Autonomous Agents and Human Augmentation" image="/images/robot3x2.jpg" href="https://www.youtube.com/watch?v=-ppYXPCEHqY" attr="Photo by Possessed Photography on Unsplash" description="Short Lecture on current healthcare robotics systems, artificial intelligence, and ethics of robotics in relation to the benefit brought about by these technologies."/>
           </Projects> 
         </div>
         <div id="skills">
-          <div className=" bg-slate-700 bg-opacity-30">
-            <div className="flex container mx-auto">
-              <div id="programming_languages" className="m-auto grid grid-flow-dense auto-rows-max">
-                <h2 className="text-center font-semibold text-xl mt-4">Programming Languages</h2>
-                <div className="flex flex-wrap auto-cols-justify-around select-none">
+          <div className="p-20 bg-slate-500">
+            <div className="flex flex-wrap md:flex-nowraap container mx-auto">
+              <div id="programming_languages" className="max-w-3xl m-auto grid grid-flow-dense auto-rows-max pt-6 pb-10">
+                <h2 className="text-center font-bold text-2xl mt-4 text-slate-100 p-4">Programming Languages</h2>
+                <div className="flex flex-wrap 2xl:justify-start justify-center select-none">
                   <Badge icon="/icons/python-icon.svg" alt="Python">Python</Badge>
                   <Badge icon="/icons/java-icon.svg" alt="Java">Java</Badge>
                   <Badge icon="/icons/javascript-icon.svg" alt="JavaScript">JavaScript</Badge>
@@ -86,21 +86,41 @@ export default function Landing() {
                   <Badge icon="/icons/linux-icon.svg" alt="Linux" size={40}>Linux</Badge>
                 </div>
               </div>
-              <div id="tools" className="container m-auto">
-                <h2 className="justify-center font-semibold">Programming Languages</h2>
-                <div>
+              <div id="tools_and_frameworks" className="max-w-3xl m-auto grid grid-flow-dense auto-rows-max pt-6 pb-10">
+                <h2 className="text-center font-bold text-2xl mt-4 text-slate-100 p-4">Tools and Frameworks</h2>
+                <div className="flex flex-wrap 2xl:justify-end justify-center select-none">
+                  <Badge icon="/icons/reactjs-icon.svg" alt="React.js">React.js</Badge>
+                  <Badge icon="/icons/next.svg" alt="Next.js">Next.js</Badge>
+                  <Badge icon="/icons/GraphQL Logo (Rhodamine).svg"alt="GraphQL" className="flex">GraphQL</Badge>
+                  <Badge icon="/icons/docker-icon.svg" alt="Docker" iconClass="mt-1.5">Docker</Badge>
+                  <Badge icon="/icons/git-icon.svg" alt="Git">Git</Badge>
+                  <Badge icon="/icons/tailwindcss-icon.svg" alt="Tailwind CSS">Tailwind CSS</Badge>
+                  <Badge icon="/icons/adobe-cc-icon.svg" iconClass="py-2" alt="Adobe">Adobe Creative Suite</Badge>
+                  <Badge alt="Mapbox GL JS">Mapbox</Badge>
                   
+                  <Badge alt="Secure Shell (SSH)">Secure Shell (SSH)</Badge>
                 </div>
-              </div>
-              <div>
-              <div id="other" className="container">
-                <h2>Programming Languages</h2>
-                <div>
-                  
-                </div>
-              </div>
               </div>
             </div>
+            <div id="tools_and_frameworks" className="max-w-3xl m-auto grid grid-flow-dense auto-rows-max pt-6 pb-10">
+                <h2 className="text-center font-bold text-2xl mt-4 text-slate-100 p-4">Concepts and Professional Skills</h2>
+                <div className="flex flex-wrap justify-center">
+                  <Badge alt="Python">Object-Oriented Programming</Badge>
+                  <Badge alt="Java">Data Visualisation</Badge>
+                  <Badge alt="JavaScript">SaaS</Badge>
+                  <Badge alt="Golang">Test-Driven Design</Badge>
+                  <Badge alt="C++" iconClass="mt-1.5">Technical Writing</Badge>
+                  <Badge alt="Objective C">Patent Drafting</Badge>
+                </div>
+              </div>
+              <div id="tools_and_frameworks" className="m-auto grid grid-flow-dense pt-6 pb-10 container max-w-xl">
+                <h2 className="text-center font-bold text-2xl mt-4 text-slate-100 p-4">Misc</h2>
+                <div className="flex justify-start">
+                  <Badge icon="/icons/sax-icon.svg" alt="Alto Saxophone only for the purpose of playing Jazz music, but unable to practice Jazz music because the alto saxophone is a loud instrument and it is difficult to practice without disturbing my neighbors at the current place I am living">
+                    Alto Saxophone only for the purpose of playing Jazz music, but unable to practice Jazz music regularly because the alto saxophone is a loud instrument and it is difficult to practice without disturbing my neighbors at the current place I am living
+                  </Badge>
+                </div>
+              </div>
           </div>
           {/** Contact info, take me to top button, copyright, etc.*/}
 
