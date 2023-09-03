@@ -1,44 +1,50 @@
+import Badge from "./components/Badge";
+import Contact from "./components/ContactPage";
 import Image from "next/image";
+import Link from "next/link";
+import LinkButton from "./components/LinkButton";
 import NavItem from "./components/NavItem";
 import Navbar from "./components/Navbar";
-import pfp from "@/images/NickSq.jpg"
-import LinkButton from "./components/LinkButton";
-import Badge from "./components/Badge";
-import Projects from "./components/Projects";
-import Link from "next/link";
 import ProjectItem from "./components/ProjectItem";
+import Projects from "./components/Projects";
+import pfp from "@/images/NickSq.jpg"
 
 /* Opening PDFs in new tab: https://github.com/vercel/next.js/discussions/25981#discussioncomment-1039648 */
 export default function Landing() {
   return (
     
-    <main className="min-h-full">
-      <div className="bg-slate-100 relative overflow-hidden">
-        <Navbar>
-          <NavItem href="#home" isActive={true}>Home</NavItem>
-          <NavItem href="#projects">Projects</NavItem>
-          <NavItem href="#skills">Skills</NavItem>
-        </Navbar>
-        <div className="fixed flex left-0 top-0 mx-6">
-        <LinkButton override="" href="#home" target="">
-          <div className="fixed flex">
-            <Image src="/icons/N.png" alt="nswagg.com" height={32} width={32}/>
-            <p className="hidden md:block px-4 pt-1 font-semibold font-serif">Nick Waggoner</p>
+    <main className="min-h-full relative">
+      <div className="bg-slate-100 overflow-hidden">
+        <div id="navbar">
+          <Navbar>
+            <NavItem href="#home" isActive={true}>Home</NavItem>
+            <NavItem href="#projects">Projects</NavItem>
+            <NavItem href="#skills">Skills</NavItem>
+          </Navbar>
+          <div className="fixed flex left-0 top-0 mx-6 z-20">
+            <LinkButton override="" href="#home" target="">
+              <div className="fixed flex">
+                <Image src="/icons/N.png" alt="nswagg.com" height={32} width={32}/>
+                <p className="hidden md:block px-4 pt-1 font-semibold font-serif">Nick Waggoner</p>
+              </div>
+            </LinkButton>
           </div>
-        </LinkButton>
+          <div className="fixed flex right-0 top-0 m-6 space-x-4 lg:space-x-6 z-20">
+            {/* <LinkButton override="" href="https://github.com/nswagg" target="_blank">
+                <Image className="hover:invert hover:brightness-200" title="GitHub" src="/icons/github-mark.png" alt="Nick Waggoner's GitHub Profile" width="28" height="28"/>  
+            </LinkButton> */}
+            <LinkButton override="" href="https://github.com/nswagg" target="_blank">
+                <Image className="hover:invert hover:brightness-200" title="GitHub" src="/icons/github-mark.png" alt="Nick Waggoner's GitHub Profile" width="28" height="28"/>  
+            </LinkButton>
+            <LinkButton override="" href="https://www.linkedin.com/in/nswagg/" target="_blank">
+                <Image className="hover:invert hover:saturate-0" title="LinkedIn" src="/icons/linkedIn.png" alt="Nick Waggoner's LinkedIn® Profile" width="28" height="28"/>
+            </LinkButton>
+          </div>
         </div>
-        <div className="fixed flex right-0 top-0 m-6 space-x-4 lg:space-x-6">
-          <LinkButton override="" href="https://github.com/nswagg" target="_blank">
-              <Image className="hover:invert hover:brightness-200" title="GitHub" src="/icons/github-mark.png" alt="Nick Waggoner's GitHub Profile" width="28" height="28"/>  
-          </LinkButton>
-          <LinkButton override="" href="https://www.linkedin.com/in/nswagg/" target="_blank">
-              <Image className="hover:invert hover:saturate-0" title="LinkedIn" src="/icons/linkedIn.png" alt="Nick Waggoner's LinkedIn® Profile" width="28" height="28"/>
-          </LinkButton>
-        </div>
-        <div id="home" className="md:container mx-auto flex h-screen ">
-          <div className="justify-center m-auto bg-slate-700 bg-opacity-20 py-12 md:px-20 md:rounded-xl shadow-lg">
+        <div id="home" className="md:container m-auto flex h-screen">
+          <div className="justify-center min-h-screen md:min-h-0 md:h-auto mx-auto bg-slate-700 bg-opacity-20 my-20 py-6 px-16 md:px-16 md:rounded-xl shadow-lg">
             <div className="flex flex-wrap justify-center lg:flex-nowrap lg:justify-normal">
-              <div className=" mx-auto content-center p-10 px-8 lg:mt-8 lg:pt-36 lg:pb-24  ">
+              <div className="mx-auto content-center p-8 px-6 lg:mt-6 lg:pt-36 lg:pb-24  ">
                 <h1 className="text-5xl font-bold">Nick Waggoner</h1>
                 <p className="m-4 font-semibold">Software Engineering<br/>Data Visualisation<br/>Web Design</p>
                 <div className="lg:space-x-3 lg:py-3 flex flex-wrap pointer-events-auto">
@@ -47,12 +53,12 @@ export default function Landing() {
                 </div>
               </div>
               <div className="items-center justify-center lg:justify-normal text-center order-first">
-                <Image src={pfp} alt={"Nick Waggoner Portrait"} className="select-none mx-auto my-4 w-40 lg:w-80 aspect-square rounded-full  shadow-lg "/>
-                <p className="font-semibold">University of Colorado Colorado Springs</p> {/** TODO: Modal for BI Explanation? Maybe alert */}
+                <Image src={pfp} alt={"Nick Waggoner Portrait"} className="select-none mx-auto my-6 w-40 lg:w-80 aspect-square rounded-full shadow-lg "/>
+                <p className="font-semibold">University of Colorado Colorado Springs</p>
                 <p className="italic">Bachelor of Innovation in Computer Science<br/>Collateral: Creative Communication</p>
               </div>
               </div>
-            <div className="px-14 m-4 italic md:text-2xl font-semibold justify-center">
+            <div className="px-14 my-4 italic md:text-2xl font-semibold justify-center">
               <h2 className=" font-bold text-3xl">Innovation</h2>
               <p className="flex xl:indent-6 justify-center">in·​no·​va·​tion (noun): The process of transforming ideas into impact</p>
             </div>
@@ -69,8 +75,8 @@ export default function Landing() {
           </Projects> 
         </div>
         <div id="skills">
-          <div className="p-20 bg-slate-500">
-            <div className="flex flex-wrap md:flex-nowraap container mx-auto">
+          <div className="py-20 px-16 bg-slate-500">
+            <div className="flex flex-wrap md:flex-nowrap container mx-auto">
               <div id="programming_languages" className="max-w-3xl m-auto grid grid-flow-dense auto-rows-max pt-6 pb-10">
                 <h2 className="text-center font-bold text-2xl mt-4 text-slate-100 p-4">Programming Languages</h2>
                 <div className="flex flex-wrap 2xl:justify-start justify-center select-none">
@@ -97,7 +103,6 @@ export default function Landing() {
                   <Badge icon="/icons/tailwindcss-icon.svg" alt="Tailwind CSS">Tailwind CSS</Badge>
                   <Badge icon="/icons/adobe-cc-icon.svg" iconClass="py-2" alt="Adobe">Adobe Creative Suite</Badge>
                   <Badge alt="Mapbox GL JS">Mapbox</Badge>
-                  
                   <Badge alt="Secure Shell (SSH)">Secure Shell (SSH)</Badge>
                 </div>
               </div>
@@ -113,22 +118,15 @@ export default function Landing() {
                   <Badge alt="Objective C">Patent Drafting</Badge>
                 </div>
               </div>
-              <div id="tools_and_frameworks" className="m-auto grid grid-flow-dense pt-6 pb-10 container max-w-xl">
-                <h2 className="text-center font-bold text-2xl mt-4 text-slate-100 p-4">Misc</h2>
-                <div className="flex justify-start">
-                  <Badge icon="/icons/sax-icon.svg" alt="Alto Saxophone only for the purpose of playing Jazz music, but unable to practice Jazz music because the alto saxophone is a loud instrument and it is difficult to practice without disturbing my neighbors at the current place I am living">
-                    Alto Saxophone only for the purpose of playing Jazz music, but unable to practice Jazz music regularly because the alto saxophone is a loud instrument and it is difficult to practice without disturbing my neighbors at the current place I am living
-                  </Badge>
-                </div>
-              </div>
           </div>
           {/** Contact info, take me to top button, copyright, etc.*/}
+          {/* <Contact /> */}
 
         </div>
       </div>
       <footer className="pointer-events-auto pt-10 pb-32 text-center border-none outline-none bg-slate-900 text-slate-500">
         Copyright © Nick Waggoner 2023. All rights reserved.<br/>
-        <a href="https://tailwindcss.com/" rel="noopener" target="_blank "className="underline">View this project template on GitHub</a>
+{/*         <a href="https://tailwindcss.com/" rel="noopener" target="_blank "className="underline">View this project template on GitHub</a> */}
       </footer>
     </main>
   )
