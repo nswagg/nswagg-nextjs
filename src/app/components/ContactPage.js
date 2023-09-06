@@ -1,4 +1,4 @@
-'use client'
+/* 'use client'
 
 export default function Contact() {
   
@@ -65,4 +65,4 @@ export default function Contact() {
       </div>
     </form>
   )
-}
+} */
