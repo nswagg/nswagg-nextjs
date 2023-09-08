@@ -6,7 +6,7 @@ export default function NavItem({href, isActive, children, target, className, re
     <li>
       <Link
         href={href}
-        rel="noopener"
+        rel="noreferer noopener"
         target={target}
         className= {`${className} pointer-events-auto rounded-md hover:bg-slate-200 pl-2 pr-3 py-2 hover:shadow-md ${isActive ? "" : ""}`}
         replace={replace}
