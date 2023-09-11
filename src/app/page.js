@@ -1,10 +1,10 @@
-import Badge from "./components/Badge";
+import Badge from "../components/Badge";
 import Image from "next/image";
-import LinkButton from "./components/LinkButton";
-import NavItem from "./components/NavItem";
-import Navbar from "./components/Navbar";
-import ProjectItem from "./components/ProjectItem";
-import Projects from "./components/Projects";
+import LinkButton from "../components/LinkButton";
+import NavItem from "../components/NavItem";
+import Navbar from "../components/Navbar";
+import ProjectItem from "../components/ProjectItem";
+import Projects from "../components/Projects";
 import ants from "@/images/ants3x2.png"
 import cyborg from "@/images/cyborg3x2.jpg"
 import map from "@/images/map3x2.png"
@@ -75,8 +75,8 @@ export default function Landing() {
             <ProjectItem title="CFA GIS Delivery Zone Optimization" description="Mapbox GIS visualization using historic delivery data to inform delivery zone optimization through speed of service"/>
             <ProjectItem title="NASA Landslide Data Visualization" href="/nasa" image={map} description="Includes public NASA landslide data from 1988-2017 Visualizes landslide dataset on a GIS tileset using the Mapbox tool."/>
             <ProjectItem title="Article: Outrunning Digital Realism" href="https://sway.office.com/n9kebLBZB7MCPqgF?ref=Link" image={xr} attr="Photo by XR Expo on Unsplash" description="As reality virtualization becomes more prevalent, virtual reality threatens both physical interaction and the instigation of severe social dilemmas revolving around escapism."/>
-            <ProjectItem title="REAL-WORLD CYBORGS | Human Augmentation Video Essay - Deus Ex: Human Revolution" image={cyborg} description="Discussion of current technology, technological development tracjectory, and social and ethical topics relating to replacing, supplementing, and superseding human abilities through use of tools and augmentation."/>
-            <ProjectItem title="Healthcare Robotics Lecture: Autonomous Agents and Human Augmentation" image={robot} href="https://www.youtube.com/watch?v=-ppYXPCEHqY" attr="Photo by Possessed Photography on Unsplash" description="Short Lecture on current healthcare robotics systems, artificial intelligence, and ethics of robotics in relation to the benefit brought about by these technologies."/>
+            <ProjectItem title="REAL-WORLD CYBORGS | Human Augmentation Video Essay - Deus Ex: Human Revolution" image={cyborg} href="https://youtu.be/UTURHopCHYs" description="Discussion of current technology, technological development tracjectory, and social and ethical topics relating to replacing, supplementing, and superseding human abilities through use of tools and augmentation."/>
+            <ProjectItem title="Healthcare Robotics Lecture: Autonomous Agents and Human Augmentation" image={robot} href="https://youtu.be/-ppYXPCEHqY" attr="Photo by Possessed Photography on Unsplash" description="Short Lecture on current healthcare robotics systems, artificial intelligence, and ethics of robotics in relation to the benefit brought about by these technologies."/>
           </Projects> 
         </div>
         <div id="skills">
