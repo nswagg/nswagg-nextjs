@@ -18,22 +18,67 @@ export default function CFAGIS() {
       zoom: 11.8
     });
 
-    map.current.on('load', () => {
+/*     map.current.on('load', () => {
       console.log(map.current.getSource('composite').vectorLayerIds) // For debugging
 
       const dataLayer = map.current.querySourceFeatures('composite', {
         'sourceLayer': process.env.NEXT_PUBLIC_MAPBOX_SOURCE_LAYER //name of vector source ID - need to obfuscate this
       });
-      console.log(dataLayer)
-      
+      console.log(dataLayer) 
 
-    })
-  }, [])
+      map.current.addSource('dataLayer', {
+        type: 'geojson',
+        data: dataLayer,
+        filter: [
+          "all",
+          [
+            "match",
+            ["get", "Order Status"],
+            ["Done"],
+            true,
+            false
+          ]
+        ],
+        cluster: true,
+        clusterMaxZoom: 22,
+        clusterRadius: 10
+      });
 
-  function mapSetup() {
-    // Create and label data clusters
-
-  }
+      map.current.addLayer({
+        id:'cluster-count',
+        type:'symbol',
+        source: 'dataLayer',
+        filter: ['has', 'point_count'],
+        layout: {
+          'text-field': ['get', 'point_count_abbreviated'],
+          'text-font': ['DIN Offc Pro Medium','Arial Unicode MS Bold'],
+          'text-size': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            12,
+            12,
+            16,
+            24
+          ],
+        },
+        paint: {
+          'text-opacity': [
+          'interpolate',
+              ['linear'],
+              ['zoom'],
+              12,
+              0,
+              13,
+              1
+          ],
+          'text-halo-color': '#000000',
+          'text-halo-width': 1,
+          'text-color': '#ffffff'
+        }
+      }); 
+    }) */ // end map.on('load')
+  }, []) // end useEffect()
 
   return (
     <div className="h-full">
