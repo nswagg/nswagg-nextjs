@@ -1,21 +1,22 @@
 'use client'
 
-import mapboxgl from "!mapbox-gl"
 import { useEffect, useRef } from "react"
 
-mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESSTOKEN 
+import mapboxgl from "!mapbox-gl"
+
+mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESSTOKEN
 
 export default function CFAGIS() {
   const mapContainer = useRef(null);
   const map = useRef(null);
-  /* const center = [-104.834347, 38.896259]
-  const cfageo = process.env.NEXT_PUBLIC_MAPBOX_CFAGEO  */
+  /*const center = [-104.834347, 38.896259] 
+  const cfageo = process.env.NEXT_PUBLIC_MAPBOX_CFAGEO */
 
   useEffect(() => {
     if(map.current) return;
-    map.current= new mapboxgl.Map({
+    map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: "mapbox://styles/mapbox/dark-v11",
+      style: process.env.NEXT_PUBLIC_MAPBOX_STYLE,
       center: [-104.834347, 38.896259],
       zoom: 11.8
     });
