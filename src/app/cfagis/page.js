@@ -8,20 +8,21 @@ mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESSTOKEN
 export default function CFAGIS() {
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const center = [-104.834347, 38.896259]
-  const cfageo = process.env.NEXT_PUBLIC_MAPBOX_CFAGEO 
+  /* const center = [-104.834347, 38.896259]
+  const cfageo = process.env.NEXT_PUBLIC_MAPBOX_CFAGEO  */
 
   useEffect(() => {
-    const map = new mapboxgl.Map({
+    if(map.current) return;
+    map.current= new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/dark-v11",
       center: [-104.834347, 38.896259],
       zoom: 11.8
     });
 
-    map.on('load', () => {
+    /* map.on('load', () => {
 
-      /* All of the delivery data points*/
+      // All of the delivery data points
       map.addSource('data', {
         type: 'vector',
         url: cfageo,
@@ -238,7 +239,7 @@ export default function CFAGIS() {
         }
       })
 
-      /* CFA delivery Zone*/
+      // CFA delivery Zone
       map.addSource('CFA_delivery_area', {
         type: 'vector',
         url: process.env.NEXT_PUBLIC_MAPBOX_CFADELIVERYAREA
@@ -256,7 +257,7 @@ export default function CFAGIS() {
         'layout': {}
       });
     }) //end map.on('load')
-    return () => map.remove()
+    return () => map.remove() */
   }) // end useEffect()
 
   return (
