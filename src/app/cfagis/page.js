@@ -258,8 +258,8 @@ export default function CFAGIS() {
         'layout': {}
       });
     }) //end map.on('load')
-    return () => map.remove()*/
-  }, []) // end useEffect() 
+    return () => map.remove() */
+  }) // end useEffect()
 
   return (
     <div className="h-full">
