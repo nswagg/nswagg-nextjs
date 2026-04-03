@@ -2,26 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+:root {
+  --bg-base: #030712;
+  --bg-surface: #0f172a;
+  --fg-primary: #e2e8f0;
+  --fg-muted: #94a3b8;
+  --accent: #14b8a6;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+html,
+body {
+  min-height: 100%;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-} */
+  color: var(--fg-primary);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(20, 184, 166, 0.2), transparent 45%),
+    radial-gradient(circle at 80% 10%, rgba(14, 165, 233, 0.14), transparent 35%),
+    linear-gradient(180deg, #020617 0%, var(--bg-base) 100%);
+}
+
+a {
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+::selection {
+  background: rgba(20, 184, 166, 0.35);
+  color: #f8fafc;
+}
