@@ -18,6 +18,18 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+## Dependency maintenance
+
+Use Node 22 and `npm ci` to reproduce the locked dependency tree. Run
+`npm run verify` for the full dependency audit (including development packages),
+dependency tree validation, lint, production build, and HTTP smoke checks.
+The audit explicitly requests online advisories; an unavailable registry is a
+failed check, not evidence of a clean tree.
+
+The same checks run on pull requests and selected branch pushes. Follow the
+audit, trace, remove or update, and re-audit loop in
+[DEPENDENCY_UPLIFT.md](./DEPENDENCY_UPLIFT.md) when findings change.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
