@@ -24,7 +24,7 @@ export default function MealPrep() {
         </section>
       </main>
 
-      <footer className="pointer-events-auto pt-10 pb-20 text-center border-none outline-none bg-slate-950 text-slate-400 text-sm">
+      <footer className="pointer-events-auto pt-10 pb-20 text-center border-none outline-hidden bg-slate-950 text-slate-400 text-sm">
         Copyright (c) Nick Waggoner 2023. All rights reserved.
         <br />
         Built with <a href="https://nextjs.org/" rel="noreferer noopener" target="_target" className="hover:underline text-teal-300">Next.js</a>, <a href="https://tailwindcss.com/" rel="noreferer noopener" target="_target" className="hover:underline text-teal-300">Tailwind CSS</a>, and deployed with <a href="https://vercel.com" rel="noreferer noopener" target="_target" className="hover:underline text-teal-300">Vercel</a>.
