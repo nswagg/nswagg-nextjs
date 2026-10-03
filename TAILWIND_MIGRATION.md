@@ -24,15 +24,52 @@ The full audit reports five high-severity affected packages for the single
 [braces recursion advisory](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm),
 down from seven before migration. The production-only audit reports zero.
 The user chose to retain the current ESLint checks until an upstream remedy is
-published. No advisory suppression, audit threshold change, or forced ESLint
-downgrade is applied. `npm run verify` and its CI workflow still fail at the full
-audit step while this finding is open.
+published. The migration initially left `npm run verify` blocked at the full
+audit step. The October 3 CI workaround below supersedes that gate behavior;
+the vulnerability remains open and the dependency versions are unchanged.
 
 When a remedy is published, update the compatible Next ESLint package and its
 lockfile, check `npm explain braces` and the full live audit, and rerun lint,
 build, and smoke tests. Do not treat a package version bump alone as remediation.
 
 Migration follows the [Tailwind upgrade guide](https://tailwindcss.com/docs/upgrade-guide).
+
+## Temporary CI workaround, October 3, 2026
+
+The user authorized a workaround while Next's compatible ESLint tooling has no
+published remedy. `npm run verify` now runs the audit-policy tests, a strict
+production-only audit, the full audit with a narrow exception, dependency-tree
+validation, the unchanged ESLint rules, production build, and both server smoke
+checks. `npm run audit` still runs the original, unsuppressed full audit.
+
+`scripts/audit-ci.mjs` defers only GHSA-vfj7-8cjw-p6xm and its five affected
+packages in the reviewed development chain: eslint-config-next 16.3.8,
+@next/eslint-plugin-next 16.3.8, fast-glob 3.3.1, micromatch 4.0.8, and braces
+3.0.3. Every installation must remain development-only at its reviewed location,
+with no additional consumers. New findings at any severity, changed advisory
+identity/range/severity, changed package versions or exposure, malformed reports,
+and audit execution/network errors fail verification. No `npm audit fix --force` or
+framework downgrade is used.
+
+The exception expires on **November 2, 2026 at 00:00 UTC**. CI records the full
+JSON audit in its logs and emits a warning and job-summary entry for the deferral.
+The exception permits validation to continue; it does not fix Braces, dismiss
+Dependabot alerts, or change commit-signing or repository protection rules.
+
+Risk remains in development tooling if untrusted, deeply nested glob patterns
+reach Braces. Next's ESLint plugin uses fast-glob for configured root directories;
+this app uses the default root rather than untrusted input. Keep lint/build
+tooling separate from public request handling and review any new glob consumers.
+
+Removal: upgrade to a compatible upstream remedy, regenerate the lockfile, require
+`npm run audit` to pass without exceptions, remove the reviewed exception, and
+rerun `npm run verify`. The strict production audit remains mandatory throughout.
+
+Workaround validation on October 3, 2026: `npm run verify` passed locally with
+12 audit-policy tests, zero production audit findings, the explicitly deferred
+five-package chain, dependency-tree validation, lint, production build, and both
+standard/custom production-server smoke checks. The raw full audit still reports
+the unpatched advisory. Remote CI and deployment are pending a signed push.
 
 ## Validation
 

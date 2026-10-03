@@ -31,7 +31,9 @@ Discovery on October 2, 2026:
    releases. Refresh transitive packages within compatible ranges. Use an
    override only when a required parent cannot resolve a compatible patch,
    and record the parent path, reason, and removal condition.
-4. Run `npm run verify`: live audit at every severity, full dependency tree,
+4. Run `npm run verify`: live audit at every severity (with only the documented,
+   temporary Braces development exception described in `TAILWIND_MIGRATION.md`),
+   full dependency tree,
    lint, production build, and route/header/image smoke checks. An execution
    failure or unavailable advisory service does not count as a passing check.
 5. If findings remain, return to step 2 for the newly resolved tree. Stop when
@@ -177,3 +179,9 @@ Other checks passed: dependency-tree validation, lint, production build, and
 both server smoke tests. Browser checks confirmed five-second H.264 playback,
 looping, pause controls, poster rendering, and no horizontal overflow at 320px.
 Browser warning/error logs were empty.
+
+The later Tailwind 4 migration removes its Braces path. The targeted October 3
+CI exception in [TAILWIND_MIGRATION.md](./TAILWIND_MIGRATION.md) supersedes the
+blocking audit behavior above. It retains the raw audit, reports the remaining
+ESLint-only advisory, and lets application validation proceed under a narrow,
+expiring exception. All other findings and audit execution failures still block.
