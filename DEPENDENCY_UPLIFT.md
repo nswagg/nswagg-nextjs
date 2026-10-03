@@ -115,3 +115,65 @@ protocol-buffers-schema in this tree. No overrides were added.
 The live GitHub snapshot remains a separate baseline: 42 open alerts against
 the default branch, including 30 Next alerts. Recheck after reviewed integration;
 local verification alone does not remediate the deployed/default branch.
+
+## Night Notebook integration check
+
+The homepage implementation starts from committed uplift `f6a186d` on
+`codex/night-notebook`. `package.json` and `package-lock.json` are unchanged;
+Next 16.3.8, React 19.3.0, and the patched transitive resolutions are retained.
+
+The current checkout contains four app pages: `/`, `/mealprep`, `/nasa`, and
+`/cfagis`. The inherited smoke list included absent `/work`, `/projects`,
+`/about`, and `/contact` pages. Those now have explicit expected 404 checks,
+along with `/a` and `/b`, rather than requiring unimplemented routes.
+The four headers expected by the existing tests are now configured through
+`security-headers.js`, shared by Next and the custom production server.
+
+Revalidated on October 2, 2026:
+
+- `npm ci --no-fund`: passed and reproduced the committed lockfile.
+- `npm run verify`: passed with live online audit, zero vulnerabilities,
+  dependency tree, lint, production build, and both server smoke checks.
+- Smoke checks cover homepage content, absence of public email contact in
+  returned HTML, four pages, six expected 404s, all four security headers,
+  and Paper Plane/Parried raster image optimization.
+- Local production browser checks: desktop and 320px layouts, loaded project
+  artwork and all three YouTube thumbnails, keyboard carousel navigation,
+  correct video destinations, disabled boundary controls, and text-only writing.
+- No new dependencies, commit, push, merge, or deployment. Live default-branch
+  Dependabot findings have not been rechecked by this design implementation.
+
+Paper Plane branding revalidated on October 3, 2026:
+
+- Lint, production build, and both production server smoke checks passed.
+- SVG/PNG icons and the 16/32/48px ICO are served correctly; favicon and Apple
+  touch icon metadata are present. PNG dimensions and ICO entries are checked.
+- Header mark loads at 1280px and 320px widths with no horizontal overflow;
+  browser warning/error logs are empty. Actual 16px and 32px assets were inspected.
+- Package manifests and the security uplift remain unchanged.
+
+## Gameplay video and merge validation, October 3, 2026
+
+The RPP hero now uses a five-second silent gameplay clip and a poster frame.
+The 23.5 MB source is encoded as a 1.9 MB 720p H.264 MP4 with fast-start metadata.
+Playback remains user initiated, with native controls and looping. Smoke tests
+check player markup, poster optimization, MP4 delivery, and byte-range seeking
+through both production servers.
+
+The fresh full audit reports seven high-severity affected packages from
+[GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm), a newly
+reviewed recursion/stack-exhaustion advisory in `braces` through 3.0.3. The npm
+registry's latest release is 3.0.3 and the advisory lists no patched version.
+The installed path runs through Tailwind's build tooling and the lint toolchain.
+`npm audit --omit=dev --offline=false` reports zero vulnerabilities. No forced
+Tailwind major upgrade or Next ESLint downgrade was applied; those changes do
+not remove every affected path and require separate migration validation.
+
+This supersedes the earlier zero-finding full-audit snapshot. `npm run verify`
+currently fails at its audit step, so the dependency CI check will fail until
+this upstream issue is remediated. The audit requirement is retained.
+
+Other checks passed: dependency-tree validation, lint, production build, and
+both server smoke tests. Browser checks confirmed five-second H.264 playback,
+looping, pause controls, poster rendering, and no horizontal overflow at 320px.
+Browser warning/error logs were empty.

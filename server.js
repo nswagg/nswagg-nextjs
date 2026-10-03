@@ -3,6 +3,7 @@
 const { createServer } = require('http')
 const { parse } = require('url')
 const next = require('next')
+const securityHeaders = require('./security-headers')
 
 const dev = process.env.NODE_ENV !== 'production'
 const hostname = 'localhost'
@@ -13,6 +14,7 @@ const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
   createServer(async (req, res) => {
+    for (const { key, value } of securityHeaders) res.setHeader(key, value)
     try {
       const parsedUrl = parse(req.url, true)
       const { pathname, query } = parsedUrl

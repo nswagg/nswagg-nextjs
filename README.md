@@ -1,4 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Nick Waggoner's personal website, built with Next.js App Router and Tailwind CSS.
+The homepage uses the dark Sweetie 16 Night Notebook design.
+
+## Updating the homepage
+
+Edit `src/data/portfolio.js` to update the introduction, social links, projects,
+YouTube uploads, and writing. Cards are rendered by shared components in
+`src/components/portfolio`. The page and notebook styles live in
+`src/app/page.js` and `src/app/notebook.module.css`.
+
+The header occupies the notebook's taller blank top margin. Its underline is
+the first horizontal paper rule, with subsequent rules spanning the full
+viewport every 32px. The red line continues through the header and the entire
+page. The red margin sits 200px
+from the left on desktop screens at least 1280px wide and moves near the edge
+on smaller screens. Content stays to its right. Adjust `--rule-spacing`,
+`--rule-color`, `--margin-color`, and `--paper-margin` in the notebook stylesheet
+to tune the paper without changing content or adding image assets.
+
+- Add a project object with a unique `id`, title, description, category, status,
+  and `links: [{ label, href }]`. Set `featured: true` on the lead project only.
+- Put cover images in `public/images/projects` and set `image` to their public
+  path, with useful `imageAlt` text. Without an image, cards show a decorative
+  notebook illustration or their title. RPP uses a gameplay poster and video;
+  Polygon Drifter uses a gameplay screenshot.
+- For RPP footage, put a short silent MP4 in `public/videos`, set `previewVideo`
+  to its public path, and set `image` to a poster still. The video loops when
+  played, has native pause controls, and never autoplays. This also respects
+  visitors who prefer reduced motion. Keep essential information in card text.
+  The current five-second highlight is a silent H.264 MP4 at 1280x720 with
+  fast-start metadata, reduced from the 23.5 MB source to about 1.9 MB. Its
+  poster is `public/images/projects/rock-paper-planes-poster.jpg`.
+- Add Steam, repository, trailer, or other destinations to a project's `links`
+  array when those pages are available. No layout changes are needed.
+- Keep `videos` ordered newest first. The homepage displays the first three.
+  This is a curated list, not a live YouTube or LinkedIn API integration. Use
+  `https://i.ytimg.com/vi/VIDEO_ID/hqdefault.jpg` for a YouTube thumbnail, or a
+  local public image path. No embedded player loads on page view.
+- Writing entries need only a title, description, and link. No blog route or
+  publishing system is required.
+- Use LinkedIn for contact. Do not add email addresses, `mailto:` links, or
+  email contact forms to the page, metadata, or public content data.
+
+Parried's cover is from its published itch.io page and the project is credited
+as a collaboration with Glacier15. Keep that credit when editing the card.
+
+## Brand assets
+
+The Paper Plane header mark is `public/icons/paper-plane.svg`. The browser icon
+uses the same geometry on a dark rounded background for contrast in both light
+and dark browser tabs. `src/app/layout.js` declares SVG/PNG and Apple touch icons;
+`src/app/favicon.ico` contains 16px, 32px, and 48px versions.
+
+After editing the SVG, regenerate the raster and ICO assets with
+`node scripts/generate-brand-icons.mjs`. This uses the existing Sharp dependency
+provided by Next.js. `public/icons/paper-plane.png` is a transparent 512px export
+for reuse. The previous N asset is retained but is no longer linked by the page.
 
 ## Getting Started
 
@@ -14,9 +70,10 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+The development server updates as you edit `src/app/page.js` and its components.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This project uses `next/font` to self-host Space Grotesk and the homepage's
+Caveat handwriting font. Production builds need access to Google Fonts.
 
 ## Dependency maintenance
 

@@ -6,8 +6,23 @@ import { Space_Grotesk } from 'next/font/google'
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Nick Waggoner',
-  description: 'Nick Waggoner portfolio and resume',
+  metadataBase: new URL('https://www.nswagg.com'),
+  title: 'Nick Waggoner | Software, Games & Videos',
+  description: 'Software, games, experiments, and videos by Nick Waggoner. Play Rock Paper Planes, explore projects, and find work from the archive.',
+  icons: {
+    icon: [
+      { url: '/icons/paper-plane-favicon.svg', type: 'image/svg+xml', sizes: 'any' },
+      { url: '/icons/favicon-32.png', type: 'image/png', sizes: '32x32' },
+      { url: '/icons/favicon-16.png', type: 'image/png', sizes: '16x16' },
+    ],
+    apple: [{ url: '/icons/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+  },
+  openGraph: {
+    title: 'Nick Waggoner | Software, Games & Videos',
+    description: 'Games, projects, and a few ideas from Nick Waggoner.',
+    type: 'website',
+    url: 'https://www.nswagg.com',
+  },
 }
 
 export default function RootLayout({ children }) {
