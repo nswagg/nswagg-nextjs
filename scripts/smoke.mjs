@@ -76,9 +76,10 @@ async function smokeServer(label, args, includeImages) {
         for (const attribute of ['controls', 'muted', 'loop', 'playsInline']) {
           assert.match(previewTag, new RegExp(`\\b${attribute}\\b`, 'i'), `${label}: player ${attribute}`)
         }
-        assert.match(previewTag, /preload="none"/, `${label}: avoid eager video download`)
+        assert.match(previewTag, /preload="none"/, `${label}: defer loading until motion preference is checked`)
+        assert.match(previewTag, /controlsList="nodownload"/i, `${label}: hide native download option`)
         assert.match(previewTag, /poster="\/images\/projects\/rock-paper-planes-poster\.jpg"/, `${label}: gameplay poster`)
-        assert.doesNotMatch(previewTag, /autoplay/i, `${label}: visitor starts playback`)
+        assert.doesNotMatch(previewTag, /autoplay/i, `${label}: autoplay waits for the visitor's motion preference`)
       }
     }
 

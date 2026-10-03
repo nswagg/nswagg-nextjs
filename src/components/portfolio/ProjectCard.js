@@ -1,14 +1,12 @@
 import Image from 'next/image'
+import GameplayPreview from './GameplayPreview'
 import styles from '@/app/notebook.module.css'
 
 function ProjectCover({ project, featured }) {
   return (
     <div className={styles.cover} data-cover={project.coverStyle}>
       {project.previewVideo ? (
-        <video controls muted loop playsInline preload="none" poster={project.image || undefined} aria-label={`${project.title} gameplay preview`}>
-          <source src={project.previewVideo} type="video/mp4" />
-          <a href={project.previewVideo}>Watch the {project.title} preview</a>
-        </video>
+        <GameplayPreview src={project.previewVideo} poster={project.image} title={project.title} />
       ) : project.image ? (
         <Image src={project.image} alt={project.imageAlt || `${project.title} cover`} fill sizes="(max-width: 760px) calc(100vw - 64px), (max-width: 1120px) 45vw, 480px" preload={featured} />
       ) : (

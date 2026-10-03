@@ -24,9 +24,12 @@ to tune the paper without changing content or adding image assets.
   notebook illustration or their title. RPP uses a gameplay poster and video;
   Polygon Drifter uses a gameplay screenshot.
 - For RPP footage, put a short silent MP4 in `public/videos`, set `previewVideo`
-  to its public path, and set `image` to a poster still. The video loops when
-  played, has native pause controls, and never autoplays. This also respects
-  visitors who prefer reduced motion. Keep essential information in card text.
+  to its public path, and set `image` to a poster still. The video autoplays muted
+  and loops, with native pause controls. Visitors who prefer reduced motion
+  start on the poster and can play manually. If autoplay is blocked, the same
+  controls remain available. The native download option is hidden where the
+  browser supports `controlsList="nodownload"`; this does not prevent copying
+  public media. Keep essential information in card text.
   The current five-second highlight is a silent H.264 MP4 at 1280x720 with
   fast-start metadata, reduced from the 23.5 MB source to about 1.9 MB. Its
   poster is `public/images/projects/rock-paper-planes-poster.jpg`.
